@@ -29,6 +29,8 @@ class SimpleFilemanagerModule extends Module
     {
         parent::init();
 
+        $this->_checkPath();
+
         $this->icons = array_merge($this->defaultIcons, $this->icons);
 
         if ( ! isset(\Yii::$app->i18n->translations['filemanager'])) {
@@ -39,5 +41,12 @@ class SimpleFilemanagerModule extends Module
                 'fileMap'        => ['filemanager' => 'filemanager.php'],
             ];
         }
+    }
+
+    private function _checkPath()
+    {
+        $path = \Yii::getAlias($this->uploadPath);
+        if (!is_dir($path))
+            mkdir($path, 0755, true);
     }
 }
