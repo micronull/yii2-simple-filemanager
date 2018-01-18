@@ -25,7 +25,7 @@ if ($directory->isRoot) {
 ?>
     <div class="simple-filemanager">
         <p>
-            <?= Html::a('<i class="fa fa-folder fa-fw"></i> ' . Yii::t('filemanager', 'Create directory'), ['create'],
+            <?= Html::a('<i class="fa fa-folder fa-fw"></i> ' . Yii::t('filemanager', 'Create directory'), ['directory/create', 'path' => $directory->path],
                 ['class' => 'btn btn-success']) ?>
             <?= Html::a('<i class="fa fa-upload fa-fw"></i> ' . Yii::t('filemanager', 'Upload files'), ['upload'],
                 ['class' => 'btn btn-primary']) ?>
