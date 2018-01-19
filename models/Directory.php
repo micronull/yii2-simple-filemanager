@@ -38,29 +38,30 @@ class Directory extends Item
         ]);
     }
 
-    public function getBreadcrumbs()
+    public function getBreadcrumbs($deactivateLast = true)
     {
         $breadcrumbs = [];
 
-        if ($this->isRoot)
+        if ($this->isRoot) {
             return $breadcrumbs;
+        }
 
         $directoriesList = explode(DIRECTORY_SEPARATOR, $this->path);
 
         $currentPath = '';
 
         foreach ($directoriesList as $n => $directory) {
-            if (!$directory){
+            if ( ! $directory) {
                 $breadcrumbs[] = [
                     'label' => Yii::t('filemanager', 'File manager'),
-                    'url' => ['index']
+                    'url'   => ['default/index']
                 ];
-            } elseif ($n < count($directoriesList) - 1) {
+            } elseif ( ! $deactivateLast || $n < count($directoriesList) - 1) {
                 $currentPath .= DIRECTORY_SEPARATOR . $directory;
 
                 $breadcrumbs[] = [
                     'label' => $directory,
-                    'url' => ['index', 'path' => $currentPath]
+                    'url'   => ['default/index', 'path' => $currentPath]
                 ];
             } else {
                 $breadcrumbs[] = $directory;
@@ -77,12 +78,7 @@ class Directory extends Item
 
     public function getIcon()
     {
-        /**
-         * @var SimpleFilemanagerModule $module
-         */
-        $module = \Yii::$app->getModule('filemanager');
-
-        return $module->icons['dir'];
+        return SimpleFilemanagerModule::getInstance()->icons['dir'];
     }
 
     public function getList()
@@ -133,5 +129,26 @@ class Directory extends Item
         }
 
         return $result;
+    }
+
+    /**
+     * @param string $path
+     *
+     * @return Directory
+     */
+    public static function createByPath($path)
+    {
+        $directory       = new Directory();
+        $directory->root = SimpleFilemanagerModule::getInstance()->fullUploadPath;
+
+        if ($path) {
+            if (substr($path, 0, 1) != DIRECTORY_SEPARATOR) {
+                $path = DIRECTORY_SEPARATOR . $path;
+            }
+
+            $directory->path = $path;
+        }
+
+        return $directory;
     }
 }

@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use \DeLuxis\Yii2SimpleFilemanager\models\Directory;
 use \DeLuxis\Yii2SimpleFilemanager\models\File;
+use \DeLuxis\Yii2SimpleFilemanager\models\Item;
 
 /** @var \yii\data\ArrayDataProvider $dataProvider */
 /** @var Directory $directory */
@@ -25,7 +26,8 @@ if ($directory->isRoot) {
 ?>
     <div class="simple-filemanager">
         <p>
-            <?= Html::a('<i class="fa fa-folder fa-fw"></i> ' . Yii::t('filemanager', 'Create directory'), ['directory/create', 'path' => $directory->path],
+            <?= Html::a('<i class="fa fa-folder fa-fw"></i> ' . Yii::t('filemanager', 'Create directory'),
+                ['directory/create', 'path' => $directory->path],
                 ['class' => 'btn btn-success']) ?>
             <?= Html::a('<i class="fa fa-upload fa-fw"></i> ' . Yii::t('filemanager', 'Upload files'), ['upload'],
                 ['class' => 'btn btn-primary']) ?>
@@ -46,8 +48,22 @@ echo \yii\grid\GridView::widget([
             'format'    => 'html'
         ],
         [
-            'class'         => 'yii\grid\ActionColumn',
-            'headerOptions' => ['class' => 'col-xs-1']
+            'class'          => 'yii\grid\ActionColumn',
+            'headerOptions'  => ['class' => 'col-xs-1'],
+            'urlCreator'     => function ($action, $model) {
+                return [strtolower((new \ReflectionClass($model))->getShortName()) . '/' . $action, 'path' => $model->path];
+            },
+            'visibleButtons' => [
+                'view'   => function ($model) {
+                    return $model instanceof File;
+                },
+                'update' => function ($model) {
+                    return $model instanceof Item;
+                },
+                'delete' => function ($model) {
+                    return $model instanceof Item;
+                }
+            ]
         ],
     ],
 ]);

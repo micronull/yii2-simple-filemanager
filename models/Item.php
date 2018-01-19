@@ -17,6 +17,11 @@ class Item extends Model
     public $path = DIRECTORY_SEPARATOR;
     public $root;
 
+    /**
+     * @var string
+     */
+    private $_fullPath;
+
     public function attributeLabels()
     {
         return [
@@ -26,7 +31,14 @@ class Item extends Model
 
     public function getFullPath()
     {
-        return $this->root . $this->path;
+        if (!isset($this->_fullPath)){
+            $this->_fullPath = $this->root . $this->path;
+
+            if (substr($this->_fullPath, -1) !== DIRECTORY_SEPARATOR)
+                $this->_fullPath .= DIRECTORY_SEPARATOR;
+        }
+
+        return $this->_fullPath;
     }
 
     public function getName()

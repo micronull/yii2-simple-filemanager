@@ -27,16 +27,7 @@ class DefaultController extends Controller
             throw new BadRequestHttpException();
         }
 
-        $directory       = new Directory();
-        $directory->root = \Yii::getAlias($this->module->uploadPath);
-
-        if ($path) {
-            if (substr($path, 0, 1) != DIRECTORY_SEPARATOR) {
-                $path = DIRECTORY_SEPARATOR . $path;
-            }
-
-            $directory->path = $path;
-        }
+        $directory = Directory::createByPath($path);
 
         return $this->render('index', [
             'directory'    => $directory,
