@@ -14,12 +14,7 @@ class File extends Item
 {
     public function getUrl()
     {
-        /**
-         * @var SimpleFilemanagerModule $module
-         */
-        $module = \Yii::$app->getModule('filemanager');
-
-        return \Yii::getAlias($module->urlPath . $this->path);
+        return \Yii::getAlias(SimpleFilemanagerModule::getInstance()->urlPath . $this->path);
     }
 
     public function getMime()
@@ -32,7 +27,7 @@ class File extends Item
         /**
          * @var SimpleFilemanagerModule $module
          */
-        $module = \Yii::$app->getModule('filemanager');
+        $module = SimpleFilemanagerModule::getInstance();
 
         if (isset($module->icons[$this->mime])) {
             return $module->icons[$this->mime];
