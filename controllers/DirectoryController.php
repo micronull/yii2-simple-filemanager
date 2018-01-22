@@ -5,6 +5,7 @@ namespace DeLuxis\Yii2SimpleFilemanager\controllers;
 use Yii;
 use DeLuxis\Yii2SimpleFilemanager\models\Directory;
 use DeLuxis\Yii2SimpleFilemanager\models\DirectoryForm;
+use yii\helpers\FileHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 
@@ -61,5 +62,18 @@ class DirectoryController extends Controller
             'model'     => $model,
             'directory' => $directory
         ]);
+    }
+
+    public function actionDelete($path)
+    {
+        if (strstr($path, '../')) {
+            throw new BadRequestHttpException();
+        }
+
+        $directory = Directory::createByPath($path);
+
+        FileHelper::removeDirectory($directory->fullPath);
+
+        return $this->redirect(['default/index', 'path' => $directory->parent->path]);
     }
 }
