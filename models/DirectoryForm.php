@@ -38,6 +38,7 @@ class DirectoryForm extends Model
 
             ['newName', 'required', 'on' => self::SCENARIO_RENAME],
             ['newName', 'match', 'pattern' => '/\//', 'not' => true, 'on' => self::SCENARIO_RENAME],
+            ['newName', 'compare', 'compareAttribute' => 'name', 'operator' => '!=']
         ];
     }
 

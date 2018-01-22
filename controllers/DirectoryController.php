@@ -48,6 +48,7 @@ class DirectoryController extends Controller
         $model           = new DirectoryForm();
         $model->path     = $directory->parent->path;
         $model->name     = $directory->name;
+        $model->newName     = $directory->name;
         $model->scenario = DirectoryForm::SCENARIO_RENAME;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {

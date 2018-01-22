@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="directory-form">
             <?php $form = ActiveForm::begin(); ?>
             <?= $form->field($model, 'path')->label(false)->hiddenInput(['value' => $model->path]) ?>
+            <?= $form->field($model, 'name')->label(false)->hiddenInput(['value' => $model->name]) ?>
             <?= $form->field($model, 'newName')->textInput() ?>
 
             <div class="form-group">
