@@ -40,7 +40,10 @@ class Directory extends Item
 
     public function getBreadcrumbs($deactivateLast = true)
     {
-        $breadcrumbs = [];
+        $breadcrumbs[] = [
+            'label' => Yii::t('filemanager', 'File manager'),
+            'url'   => ['default/index']
+        ];
 
         if ($this->isRoot) {
             return $breadcrumbs;
@@ -51,12 +54,10 @@ class Directory extends Item
         $currentPath = '';
 
         foreach ($directoriesList as $n => $directory) {
-            if ( ! $directory) {
-                $breadcrumbs[] = [
-                    'label' => Yii::t('filemanager', 'File manager'),
-                    'url'   => ['default/index']
-                ];
-            } elseif ( ! $deactivateLast || $n < count($directoriesList) - 1) {
+            if (!$directory)
+                continue;
+
+            if ( ! $deactivateLast || $n < count($directoriesList) - 1) {
                 $currentPath .= DIRECTORY_SEPARATOR . $directory;
 
                 $breadcrumbs[] = [

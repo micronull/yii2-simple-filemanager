@@ -29,7 +29,8 @@ if ($directory->isRoot) {
             <?= Html::a('<i class="fa fa-folder fa-fw"></i> ' . Yii::t('filemanager', 'Create directory'),
                 ['directory/create', 'path' => $directory->path],
                 ['class' => 'btn btn-success']) ?>
-            <?= Html::a('<i class="fa fa-upload fa-fw"></i> ' . Yii::t('filemanager', 'Upload files'), ['upload'],
+            <?= Html::a('<i class="fa fa-upload fa-fw"></i> ' . Yii::t('filemanager', 'Upload files'),
+                ['file/upload', 'path' => $directory->path],
                 ['class' => 'btn btn-primary']) ?>
         </p>
     </div>
@@ -51,14 +52,17 @@ echo \yii\grid\GridView::widget([
             'class'          => 'yii\grid\ActionColumn',
             'headerOptions'  => ['class' => 'col-xs-1'],
             'urlCreator'     => function ($action, $model) {
-                return [strtolower((new \ReflectionClass($model))->getShortName()) . '/' . $action, 'path' => $model->path];
+                return [
+                    strtolower((new \ReflectionClass($model))->getShortName()) . '/' . $action,
+                    'path' => $model->path
+                ];
             },
             'visibleButtons' => [
                 'view'   => function ($model) {
-                    return $model instanceof File;
+                    return false;
                 },
                 'update' => function ($model) {
-                    return $model instanceof Item;
+                    return $model instanceof Directory;
                 },
                 'delete' => function ($model) {
                     return $model instanceof Item;

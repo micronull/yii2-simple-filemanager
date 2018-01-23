@@ -11,6 +11,7 @@ use yii\base\Model;
  * @property string $name
  * @property string $type
  * @property string $fullPath
+ * @property boolean $isExist
  */
 class Item extends Model
 {
@@ -34,7 +35,7 @@ class Item extends Model
         if (!isset($this->_fullPath)){
             $this->_fullPath = $this->root . $this->path;
 
-            if (substr($this->_fullPath, -1) !== DIRECTORY_SEPARATOR)
+            if (!is_file($this->_fullPath) && substr($this->_fullPath, -1) !== DIRECTORY_SEPARATOR)
                 $this->_fullPath .= DIRECTORY_SEPARATOR;
         }
 
@@ -49,5 +50,10 @@ class Item extends Model
     public function getType()
     {
         return filetype($this->fullPath);
+    }
+
+    public function isExist()
+    {
+        return file_exists($this->fullPath);
     }
 }
