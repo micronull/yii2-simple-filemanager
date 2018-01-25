@@ -1,7 +1,8 @@
 {
     "name": "de-luxis/yii2-simple-filemanager",
     "description": "Simple filemanager for yii2 framework",
-    "type": "library",
+    "type": "yii2-extension",
+    "keywords": ["yii", "filemanager"],
     "version": "1.0.0",
     "license": "MIT",
     "require": {
