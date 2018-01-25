@@ -1,4 +1,10 @@
 # Yii2 simple filemanager
+[![Maintainability](https://api.codeclimate.com/v1/badges/2aef3abcdff74d094710/maintainability)](https://codeclimate.com/github/De-Luxis/yii2-simple-filemanager/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/2aef3abcdff74d094710/test_coverage)](https://codeclimate.com/github/De-Luxis/yii2-simple-filemanager/test_coverage)
+[![Latest Stable Version](https://poser.pugx.org/de-luxis/yii2-simple-filemanager/v/stable?format=flat)](https://packagist.org/packages/de-luxis/yii2-simple-filemanager) 
+[![Latest Unstable Version](https://poser.pugx.org/de-luxis/yii2-simple-filemanager/v/unstable?format=flat)](https://packagist.org/packages/de-luxis/yii2-simple-filemanager)
+[![License](https://poser.pugx.org/de-luxis/yii2-simple-filemanager/license?format=flat)](https://packagist.org/packages/de-luxis/yii2-simple-filemanager)
+
 A simple file manager. Having minimal dependencies, but great opportunities for expansion.
 
 ## Features
