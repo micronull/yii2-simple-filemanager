@@ -3,7 +3,7 @@
     "description": "Simple filemanager for yii2 framework",
     "type": "yii2-extension",
     "keywords": ["yii", "filemanager"],
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "require": {
         "yiisoft/yii2": "*",
