@@ -45,6 +45,11 @@ class File extends Item
         return Directory::createByPath(dirname($this->path));
     }
 
+    public function getSize()
+    {
+        return filesize($this->fullPath);
+    }
+
     /**
      * @param string $path
      *

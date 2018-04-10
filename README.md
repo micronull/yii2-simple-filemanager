@@ -16,7 +16,6 @@ A simple file manager. Having minimal dependencies, but great opportunities for 
 
 * Preview for images.
 * Extended information about files.
-* Column with the file size.
 * Possibility to limit the types of downloaded files through the configuration.
 * Add support RBAC.
 

@@ -49,6 +49,15 @@ echo \yii\grid\GridView::widget([
             'format'    => 'html'
         ],
         [
+            'class' => 'yii\grid\DataColumn',
+            'headerOptions'  => ['class' => 'col-xs-1'],
+            'label' => \Yii::t('filemanager', 'Size'),
+            'attribute' => 'size',
+            'value' => function($item){
+                return $item instanceof File ? \Yii::$app->formatter->asShortSize($item->size) : '';
+            }
+        ],
+        [
             'class'          => 'yii\grid\ActionColumn',
             'headerOptions'  => ['class' => 'col-xs-1'],
             'urlCreator'     => function ($action, $model) {
