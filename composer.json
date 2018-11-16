@@ -6,6 +6,7 @@
     "version": "1.0.1",
     "license": "MIT",
     "require": {
+        "ext-fileinfo": "*",
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
         "components/font-awesome": ">=4.0"
