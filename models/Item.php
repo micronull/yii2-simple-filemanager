@@ -44,9 +44,16 @@ class Item extends Model
         return $this->_fullPath;
     }
 
+    /**
+     * @return string
+     */
     public function getName()
     {
-        return basename($this->fullPath);
+        if ( ! preg_match('/\/([^\/]+?)\/?$/', $this->fullPath, $m)) {
+            throw new InvalidCallException('Not correct full path.');
+        }
+
+        return $m[1];
     }
 
     public function getType()
