@@ -32,9 +32,9 @@ class UploadForm extends Model
             }
 
             return true;
-        } else {
-            return false;
         }
+
+        return false;
     }
 
     public function attributeLabels()
