@@ -2,6 +2,7 @@
 
 namespace DeLuxis\Yii2SimpleFilemanager\models;
 
+use yii\base\InvalidCallException;
 use yii\base\Model;
 
 /**
@@ -15,7 +16,7 @@ use yii\base\Model;
  */
 class Item extends Model
 {
-    public $path = DIRECTORY_SEPARATOR;
+    public $path = '/';
     public $root;
 
     /**
@@ -35,8 +36,9 @@ class Item extends Model
         if (!isset($this->_fullPath)){
             $this->_fullPath = $this->root . $this->path;
 
-            if (!is_file($this->_fullPath) && substr($this->_fullPath, -1) !== DIRECTORY_SEPARATOR)
-                $this->_fullPath .= DIRECTORY_SEPARATOR;
+            if ( ! is_file($this->_fullPath) && substr($this->_fullPath, -1) !== '/') {
+                $this->_fullPath .= '/';
+            }
         }
 
         return $this->_fullPath;

@@ -22,14 +22,14 @@ class Directory extends Item
             return null;
         }
 
-        $directoriesList = explode(DIRECTORY_SEPARATOR, $this->path);
+        $directoriesList = explode('/', $this->path);
 
         array_pop($directoriesList);
 
-        $path = implode(DIRECTORY_SEPARATOR, $directoriesList);
+        $path = implode('/', $directoriesList);
 
-        if (substr($path, 0, 1) != DIRECTORY_SEPARATOR) {
-            $path = DIRECTORY_SEPARATOR . $path;
+        if (substr($path, 0, 1) != '/') {
+            $path = '/' . $path;
         }
 
         return new Directory([
@@ -49,7 +49,7 @@ class Directory extends Item
             return $breadcrumbs;
         }
 
-        $directoriesList = explode(DIRECTORY_SEPARATOR, $this->path);
+        $directoriesList = explode('/', $this->path);
 
         $currentPath = '';
 
@@ -58,7 +58,7 @@ class Directory extends Item
                 continue;
 
             if ( ! $deactivateLast || $n < count($directoriesList) - 1) {
-                $currentPath .= DIRECTORY_SEPARATOR . $directory;
+                $currentPath .= '/' . $directory;
 
                 $breadcrumbs[] = [
                     'label' => $directory,
@@ -74,7 +74,7 @@ class Directory extends Item
 
     public function getIsRoot()
     {
-        return $this->path === DIRECTORY_SEPARATOR;
+        return $this->path === '/';
     }
 
     public function getIcon()
@@ -86,8 +86,8 @@ class Directory extends Item
     {
         $path = $this->fullPath;
 
-        if (substr($path, -1) != DIRECTORY_SEPARATOR) {
-            $path .= DIRECTORY_SEPARATOR;
+        if (substr($path, -1) != '/') {
+            $path .= '/';
         }
 
         if ( ! is_dir($path)) {
@@ -143,8 +143,8 @@ class Directory extends Item
         $directory->root = SimpleFilemanagerModule::getInstance()->fullUploadPath;
 
         if ($path) {
-            if (substr($path, 0, 1) != DIRECTORY_SEPARATOR) {
-                $path = DIRECTORY_SEPARATOR . $path;
+            if (substr($path, 0, 1) != '/') {
+                $path = '/' . $path;
             }
 
             $directory->path = $path;

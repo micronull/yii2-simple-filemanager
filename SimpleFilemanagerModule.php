@@ -12,7 +12,7 @@ use yii\base\Module;
 class SimpleFilemanagerModule extends Module
 {
     public $controllerNamespace = 'DeLuxis\Yii2SimpleFilemanager\controllers';
-    public $uploadPath = '@webroot' . DIRECTORY_SEPARATOR . 'upload';
+    public $uploadPath = '@webroot/upload';
     public $urlPath = '@web/upload';
 
     public $icons = [];
@@ -44,7 +44,7 @@ class SimpleFilemanagerModule extends Module
             \Yii::$app->i18n->translations['filemanager'] = [
                 'class'          => 'yii\i18n\PhpMessageSource',
                 'sourceLanguage' => 'en-US',
-                'basePath'       => $this->basePath . DIRECTORY_SEPARATOR . 'messages',
+                'basePath'       => $this->basePath . '/messages',
                 'fileMap'        => ['filemanager' => 'filemanager.php'],
             ];
         }
