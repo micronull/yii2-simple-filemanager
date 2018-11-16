@@ -9,7 +9,7 @@
         "ext-fileinfo": "*",
         "yiisoft/yii2": "*",
         "yiisoft/yii2-bootstrap": "*",
-        "components/font-awesome": ">=4.0"
+        "yidas/yii2-fontawesome": "~2.0.0"
     },
     "authors": [
         {
