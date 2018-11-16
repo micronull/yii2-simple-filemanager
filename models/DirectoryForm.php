@@ -34,7 +34,7 @@ class DirectoryForm extends Model
         return [
             [['name', 'path'], 'required'],
             ['name', 'match', 'pattern' => '/\//', 'not' => true],
-            ['path', 'match', 'pattern' => '/..\//', 'not' => true],
+            ['path', 'match', 'pattern' => '/\.\.\//', 'not' => true],
 
             ['newName', 'required', 'on' => self::SCENARIO_RENAME],
             ['newName', 'match', 'pattern' => '/\//', 'not' => true, 'on' => self::SCENARIO_RENAME],
